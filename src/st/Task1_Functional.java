@@ -219,5 +219,17 @@ public class Task1_Functional {
 		}
 		assertTrue(ex instanceof RuntimeException);
 	}
+	
+	@Test
+	public void testSpec3KeepSameOrder() {
+		
+		map.store("name", "Adam");
+        map.store("surname", "Bob");
+        map.store("age", "34");
+        
+        map.update("surname", "smith");
+        
+		assertTrue(map.getEntries().get(1).getValue().equalsIgnoreCase("smith"));
+	}
 
 }
