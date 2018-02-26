@@ -229,7 +229,29 @@ public class Task1_Functional {
         
         map.update("surname", "smith");
         
-		assertTrue(map.getEntries().get(1).getValue().equalsIgnoreCase("smith"));
+		assertTrue(map.getEntries().get(1).getValue().equals("smith"));
 	}
+	
+	@Test
+	public void testSpec3UpdateExisting() {
+		
+		map.store("name","john");
+		map.store("surname","smith");
+		
+		String updateTemplate = "surname";
+		ArrayList<Entry> el = map.getEntries();
+		
+			for(Entry e : el) {
+				
+				String template = e.getPattern();
+						
+				if(template.equalsIgnoreCase(updateTemplate)) {
+					map.update(template, "bob");
+				}	
+			}
+			
+			assertTrue(map.getEntries().get(1).getValue().equals("bob"));
+	}
+	
 
 }
