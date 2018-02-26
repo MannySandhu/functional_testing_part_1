@@ -1,9 +1,13 @@
 package st;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
+
+import st.EntryMap.Entry;
 
 /*
  * 
@@ -25,7 +29,7 @@ public class Task1_Functional {
     
     // initialise objects
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
     	map = new EntryMap();
         engine = new TemplateEngine();
         simpleEngine = new SimpleTemplateEngine();
@@ -127,11 +131,11 @@ public class Task1_Functional {
      */
 	
 	@Test
-	public void testSpec1NullEmptyTemplate() {
+	public void testSpecDeleteNullTemplate() {
 		
 		Exception ex = null;
 		try {
-			map.store(null, "value");
+			map.delete(null);
 			
 		}catch(Exception e) {
 			ex = e;
@@ -139,7 +143,42 @@ public class Task1_Functional {
 		assertTrue(ex instanceof RuntimeException);
 	}
 	
+	@Test
+	public void testSpecDeleteEmptyTemplate() {
+		
+		Exception ex = null;
+		String empty = "";
+		try {
+			map.delete(empty);
+			
+		}catch(Exception e) {
+			ex = e;
+		}
+		assertTrue(ex instanceof RuntimeException);
+	}
 	
+	@Test
+	public void testSpecDeleteExisting() {
+		
+		map.store("name","john");
+		map.store("surname","smith");
+		
+		String deleteTemplate = "name";
+		ArrayList<Entry> el = map.getEntries();
+		int ini_size = el.size();
+		
+			for(Entry e : el) {
+				
+				String template = e.getPattern();
+						
+				if(template.equalsIgnoreCase(deleteTemplate)) {
+					map.delete(template);
+				}	
+			}
+			
+		int new_size = el.size();	
+		assertTrue(new_size < ini_size);
+	}
 	
 	
 	
