@@ -114,5 +114,35 @@ public class Task1_Functional {
         assertTrue(actualSize == expectedSize); 
 	}
 	//============================================================
+	
+	/* ===========================================================
+     *  2. Test EntryMap.delete() method
+     *  
+     *  Specification:
+     *  Method takes arg1, arg2 of type string
+     *  1. Template cannot be NULL or empty - throw runtime exception
+     *  2. On deleting value/pair, entries remained ordered
+     *  3. Only existing value/pair can be deleted
+     *  
+     */
+	
+	@Test
+	public void testSpec1NullEmptyTemplate() {
+		
+		Exception ex = null;
+		try {
+			map.store(null, "value");
+			
+		}catch(Exception e) {
+			ex = e;
+		}
+		assertTrue(ex instanceof RuntimeException);
+	}
+	
+	
+	
+	
+	
+	//============================================================
 
 }
