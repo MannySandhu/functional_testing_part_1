@@ -131,7 +131,7 @@ public class Task1_Functional {
      */
 	
 	@Test
-	public void testSpecDeleteNullTemplate() {
+	public void testSpec2DeleteNullTemplate() {
 		
 		Exception ex = null;
 		try {
@@ -144,7 +144,7 @@ public class Task1_Functional {
 	}
 	
 	@Test
-	public void testSpecDeleteEmptyTemplate() {
+	public void testSpec2DeleteEmptyTemplate() {
 		
 		Exception ex = null;
 		String empty = "";
@@ -179,9 +179,45 @@ public class Task1_Functional {
 		int new_size = el.size();	
 		assertTrue(new_size < ini_size);
 	}
-	
-	
-	
 	//============================================================
+	
+	/* ===========================================================
+     *  3. Test EntryMap.update() method
+     *  
+     *  Specification:
+     *  Method takes arg1, arg2 of type string
+     *  1. Template cannot be NULL or empty - throw runtime exception
+     *  2. Replace value cannot be NULL - throw runtime exception
+     *  3. Operation does not change order
+     *  4. Existing entries can only be updated
+     *  
+     */
+	
+	@Test
+	public void testSpec3DeleteNullTemplate() {
+		
+		Exception ex = null;
+		try {
+			map.update(null, "john");
+			
+		}catch(Exception e) {
+			ex = e;
+		}
+		assertTrue(ex instanceof RuntimeException);
+	}
+	
+	@Test
+	public void testSpec3DeleteEmptyTemplate() {
+		
+		Exception ex = null;
+		String empty = "";
+		try {
+			map.update(empty, "john");
+			
+		}catch(Exception e) {
+			ex = e;
+		}
+		assertTrue(ex instanceof RuntimeException);
+	}
 
 }
